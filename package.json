@@ -19,7 +19,8 @@
   "scripts": {
 		"build": "rescript build",
 		"dev": "rescript build- w",
-		"clean": "rescript clean"
+		"clean": "rescript clean",
+    "prepack": "yarn build"
   },
 	"files": [
     "src/**/*.res",
