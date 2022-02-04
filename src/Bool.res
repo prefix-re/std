@@ -1,0 +1,1 @@
+let toString = b => b ? "true" : "false"
