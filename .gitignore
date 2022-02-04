@@ -1,4 +1,5 @@
 lib/bs/*
+.bsb.lock
 .merlin
 yarn.lock
 yarn-error.log
