@@ -1,5 +1,6 @@
 {
   "name": "@prefix_re/std",
+  "namespace": "std",
   "sources": [
     {
       "dir" : "src",
