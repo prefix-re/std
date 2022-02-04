@@ -23,6 +23,7 @@
     "prepack": "yarn build"
   },
   "files": [
+    "src/**/*.js",
     "src/**/*.res",
     "src/**/*.resi",
     "bsconfig.json"
