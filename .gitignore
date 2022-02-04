@@ -1,2 +1,4 @@
-*.js
+lib/bs/*
+.merlin
+yarn.lock
 yarn-error.log
