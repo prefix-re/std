@@ -1,6 +1,6 @@
 {
   "name": "@prefix_re/std",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Standard Library for ReScript",
   "license": "MIT",
   "author": "Niclas Overby <niclas@overby.me> (https://niclas@overby.me)",
@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/prefix-re/std",
   "scripts": {
-		"build": "rescript build",
-		"dev": "rescript build- w",
-		"clean": "rescript clean",
+    "build": "rescript build",
+    "dev": "rescript build- w",
+    "clean": "rescript clean",
     "prepack": "yarn build"
   },
-	"files": [
+  "files": [
     "src/**/*.res",
     "src/**/*.resi",
     "bsconfig.json"
