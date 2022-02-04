@@ -18,12 +18,12 @@
   "homepage": "https://github.com/prefix-re/std",
   "scripts": {
     "build": "rescript build",
-    "dev": "rescript build- w",
+    "dev": "rescript build -w",
     "clean": "rescript clean",
     "prepack": "yarn build"
   },
   "files": [
-    "src/**/*.js",
+    "lib/**/*.js",
     "src/**/*.res",
     "src/**/*.resi",
     "bsconfig.json"
