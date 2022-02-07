@@ -1,6 +1,6 @@
 {
   "name": "@prefix_re/std",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Standard Library for ReScript",
   "license": "MIT",
   "author": "Niclas Overby <niclas@overby.me> (https://niclas@overby.me)",
