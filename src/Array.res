@@ -26,10 +26,12 @@ let uniq = a => {
   a->reduce((a, i) => a->includes(i) ? a : a->concat([i]), [])
 }
 
-let groupBy = (a, fn) =>
-  a
-  ->reduce(
-    (m, v) => m->Belt.Map.String.set(v->fn, m->Belt.Map.String.getWithDefault(v->fn, 0) + 1),
-    Belt.Map.String.empty,
-  )
-  ->Belt.Map.String.toArray
+let groupBy = (a, fn) => a->reduce((m, v) =>
+    m->Belt.Map.String.set(
+      v->fn,
+      switch m->Belt.Map.String.get(v->fn) {
+      | Some(a) => a->concat([v])
+      | None => [v]
+      },
+    )
+  , Belt.Map.String.empty)->Belt.Map.String.toArray
