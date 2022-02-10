@@ -1,5 +1,10 @@
 type t<'a, 'e> = Belt.Result.t<'a, 'e>
 
+let toOption = r => switch r {
+| Ok(v) => Some(v)
+| Error(v) => None
+}
+
 let map = Belt.Result.map
 let flatMap = Belt.Result.flatMap
 let flatten = o =>
