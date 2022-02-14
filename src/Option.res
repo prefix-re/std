@@ -3,6 +3,9 @@ let toResult = (o, err) => switch o {
 | None => Error(err)
 }
 
+let isSome = Belt.Option.isSome
+let isNone = Belt.Option.isNone
+
 let map = Belt.Option.map
 let flatMap = Belt.Option.flatMap
 let flatten = o => switch o {
