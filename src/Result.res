@@ -32,7 +32,7 @@ let fold = (r, f) =>
 let flatFold = (r, f) =>
   switch r {
   | Error(e) => e->f
-  | Ok(v) => v
+  | Ok(v) => Ok(v)
   }
 
 let seq = (a: array<result<'a, 'error>>) => {

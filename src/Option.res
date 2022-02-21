@@ -21,7 +21,7 @@ let fold = (o, f) =>
 let flatFold = (r, f) =>
   switch r {
   | None => f()
-  | Some(v) => v
+  | Some(v) => Some(v)
   }
 
 let seq = (a: array<option<'a>>) => {
