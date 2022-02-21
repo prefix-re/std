@@ -10,30 +10,29 @@ let isError = Belt.Result.isError
 
 let map = Belt.Result.map
 let flatMap = Belt.Result.flatMap
-let flat = o =>
-  switch o {
-  | Ok(Ok(o)) => Ok(o)
+let flat = r =>
+  switch r {
+  | Ok(Ok(v)) => Ok(v)
   | Ok(Error(e)) => Error(e)
   | Error(e) => Error(e)
   }
 
 let mapError = (r, f) =>
   switch r {
-  | Error(val) => Error(val->f)
-  | Ok(y) => Ok(y)
+  | Error(e) => Error(e->f)
+  | Ok(v) => Ok(v)
   }
 let flatMapError = (r, f) => r->mapError(f)->flat
 
 let fold = (r, f) =>
   switch r {
-  | Error(val) => Ok(val->f)
-  | Ok(y) => Ok(y)
+  | Error(e) => Ok(e->f)
+  | Ok(v) => Ok(v)
   }
-
 let flatFold = (r, f) =>
   switch r {
-  | Error(val) => val->f
-  | Ok(y) => y
+  | Error(e) => e->f
+  | Ok(v) => v
   }
 
 let seq = (a: array<result<'a, 'error>>) => {
@@ -46,17 +45,17 @@ let seq = (a: array<result<'a, 'error>>) => {
   , Ok([]))
 }
 
-let seq2 = ((a1: result<'a, 'error>, a2: result<'b, 'error>)) => {
-  switch (a1, a2) {
-  | (Ok(a1), Ok(a2)) => Ok(a1, a2)
+let seq2 = ((r1: result<'a, 'error>, r2: result<'b, 'error>)) => {
+  switch (r1, r2) {
+  | (Ok(v1), Ok(v2)) => Ok(v1, v2)
   | (Error(e), _) => Error(e)
   | (_, Error(e)) => Error(e)
   }
 }
 
-let seq3 = ((a1: result<'a, 'error>, a2: result<'b, 'error>, a3: result<'c, 'error>)) => {
-  switch (a1, a2, a3) {
-  | (Ok(a1), Ok(a2), Ok(a3)) => Ok(a1, a2, a3)
+let seq3 = ((r1: result<'a, 'error>, r2: result<'b, 'error>, r3: result<'c, 'error>)) => {
+  switch (r1, r2, r3) {
+  | (Ok(v1), Ok(v2), Ok(v3)) => Ok(v1, v2, v3)
   | (Error(e), _, _) => Error(e)
   | (_, Error(e), _) => Error(e)
   | (_, _, Error(e)) => Error(e)
@@ -64,13 +63,13 @@ let seq3 = ((a1: result<'a, 'error>, a2: result<'b, 'error>, a3: result<'c, 'err
 }
 
 let seq4 = ((
-  a1: result<'a, 'error>,
-  a2: result<'b, 'error>,
-  a3: result<'c, 'error>,
-  a4: result<'d, 'error>,
+  r1: result<'a, 'error>,
+  r2: result<'b, 'error>,
+  r3: result<'c, 'error>,
+  r4: result<'d, 'error>,
 )) => {
-  switch (a1, a2, a3, a4) {
-  | (Ok(a1), Ok(a2), Ok(a3), Ok(a4)) => Ok(a1, a2, a3, a4)
+  switch (r1, r2, r3, r4) {
+  | (Ok(v1), Ok(v2), Ok(v3), Ok(v4)) => Ok(v1, v2, v3, v4)
   | (Error(e), _, _, _) => Error(e)
   | (_, Error(e), _, _) => Error(e)
   | (_, _, Error(e), _) => Error(e)
