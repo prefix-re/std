@@ -10,7 +10,7 @@ let isError = Belt.Result.isError
 
 let map = Belt.Result.map
 let flatMap = Belt.Result.flatMap
-let flatten = o =>
+let flat = o =>
   switch o {
   | Ok(Ok(o)) => Ok(o)
   | Ok(Error(e)) => Error(e)
@@ -22,7 +22,7 @@ let mapError = (r, f) =>
   | Error(val) => Error(val->f)
   | Ok(y) => Ok(y)
   }
-let flatMapError = (r, f) => r->mapError(f)->flatten
+let flatMapError = (r, f) => r->mapError(f)->flat
 
 let fold = (r, f) =>
   switch r {

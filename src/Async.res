@@ -37,6 +37,6 @@ let rec pool = (tasks, count) => {
   `pool: ${rest->Array.length->Int.toString}`->Console.log
   switch rest->Array.length {
   | 0 => curTasks
-  | _ => curTasks->flatMap(res1 => rest->pool(count)->map(res2 => [res1, res2]->Array.flatten))
+  | _ => curTasks->flatMap(res1 => rest->pool(count)->map(res2 => [res1, res2]->Array.flat))
   }
 }

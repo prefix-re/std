@@ -8,7 +8,7 @@ let isNone = Belt.Option.isNone
 
 let map = Belt.Option.map
 let flatMap = Belt.Option.flatMap
-let flatten = o => switch o {
+let flat = o => switch o {
 | Some(Some(o)) => Some(o)
 | _ => None
 }

@@ -4,7 +4,7 @@ let to = t => t->Ok->Async.to
 let toError = t => t->Error->Async.to
 let fromResult = t => t->Async.to
 
-let flatten = (to: t<t<'a, 'error>, 'error>) => {
+let flat = (to: t<t<'a, 'error>, 'error>) => {
   to->Async.flatMap(r => {
     switch r {
     | Ok(ti) => ti
@@ -14,11 +14,11 @@ let flatten = (to: t<t<'a, 'error>, 'error>) => {
 }
 
 let map = (a, fn) => a->Async.map(res => res->Result.map(fn))
-let flatMap = (a, fn) => a->Async.map(res => res->Result.map(fn))->flatten
+let flatMap = (a, fn) => a->Async.map(res => res->Result.map(fn))->flat
 let mapError = (a, fn) => a->Async.map(res => res->Result.mapError(fn))
-let flatMapError = (a, fn) => a->Async.map(res => res->Result.mapError(fn))->flatten
+let flatMapError = (a, fn) => a->Async.map(res => res->Result.mapError(fn))->flat
 let fold = (a, fn) => a->Async.map(res => res->Result.fold(fn))
-let flatFold = (a, fn) => a->Async.map(res => res->Result.fold(fn))->flatten
+let flatFold = (a, fn) => a->Async.map(res => res->Result.fold(fn))->flat
 
 let seq = (a: array<t<'a, 'error>>) => a->Async.seq->Async.map(Result.seq)
 
@@ -46,9 +46,9 @@ let rec pool = (tasks: array<unit => Async.t<result<'a, string>>>, count): Async
     tasks->map(res1 =>
       switch rest->Array.length {
       | 0 => res1->to
-      | _ => rest->pool(count)->map(res2 => [res1, res2]->Array.flatten)
+      | _ => rest->pool(count)->map(res2 => [res1, res2]->Array.flat)
       }
     )
   })
-  ->flatten
+  ->flat
 }

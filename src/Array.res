@@ -7,10 +7,10 @@ let concat = Js.Array2.concat
 let length = Js.Array2.length
 let empty = a => a->length == 0
 let filter = Js.Array2.filter
-let flatten = Belt.Array.concatMany
-let flatMap = (a, fn) => a->Js.Array2.map(fn)->flatten
+let flat = Belt.Array.concatMany
+let flatMap = (a, fn) => a->Js.Array2.map(fn)->flat
 let mapWithIndex = Belt.Array.mapWithIndex
-let flatMapWithIndex = (a, fn) => a->mapWithIndex(fn)->flatten
+let flatMapWithIndex = (a, fn) => a->mapWithIndex(fn)->flat
 let from = Js.Array2.from
 let includes = Js.Array2.includes
 let join = Js.Array2.joinWith
